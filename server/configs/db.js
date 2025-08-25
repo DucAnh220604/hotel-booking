@@ -1,14 +1,31 @@
+// import mongoose from "mongoose";
+
+// const connectDB = async () => {
+//     try {
+//         mongoose.connection.on('connected', () => {
+//             console.log("MongoDB connected successfully");
+//         })
+//         await mongoose.connect(`${process.env.MONGODB_URI}/hotel-booking`)
+//     } catch (error) {
+//         console.error(error.message);
+//     }
+// }
+
+// export default connectDB;
+
+
 import mongoose from "mongoose";
 
-const connectDB = async ()=>{
+const connectDB = async () => {
     try {
-        mongoose.connection.on('connected',()=>{
-            console.log("MongoDB connected successfully");
-        })
-        await mongoose.connect(`${process.env.MONGODB_URI}/hotel-booking`)
+        await mongoose.connect(`${process.env.MONGODB_URI}/hotel-booking`, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log("✅ MongoDB connected successfully");
     } catch (error) {
-        console.error(error.message);
+        console.error("❌ MongoDB connection error:", error.message);
     }
-}
+};
 
 export default connectDB;
